@@ -1,0 +1,66 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Knockout-page Demo</title>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="knockout-3.3.0.js"></script>
+	<script type="text/javascript" src="../ko.page.js"></script>
+</head>
+<body>
+	<ul data-bind="foreach:list">
+		<li><span data-bind="text:id"></span>：<span data-bind="text:name"></span></li>
+	</ul>
+	<div data-bind="page:currentPage"></div>
+	
+
+	<script type="text/javascript">
+	var data = [
+		{id:"1",name:"a"},
+		{id:"2",name:"b"},
+		{id:"3",name:"c"},
+		{id:"4",name:"d"},
+		{id:"5",name:"e"},
+		{id:"6",name:"f"},
+		{id:"7",name:"g"},
+		{id:"8",name:"h"},
+		{id:"9",name:"i"},
+		{id:"10",name:"j"},
+		{id:"11",name:"k"},
+		{id:"12",name:"l"},
+		{id:"13",name:"m"},
+		{id:"14",name:"n"}
+	];
+
+	var Viewmodel = function(){
+		this.list = ko.observableArray();
+		ko.koPage.init(this,this.GetData,{
+			pagesize:5
+		});
+	}
+
+	Viewmodel.prototype.GetData = function(pageindex){
+		ko.koPage.count(data.length);
+		this.list(data.slice((pageindex-1)*5,pageindex*5));
+	}
+
+/*
+	// 如果为ajax请求
+	Viewmodel.prototype.GetData = function(pageindex){
+		var that = this;
+		$.ajax({
+			url:'/list',
+			success:function(json){ // 假设json格式为：{total:100,data:[...]}
+				ko.koPage.count(json.total);
+				that.list(json.data);
+			}
+			}
+		});
+	}
+*/
+	$(function(){
+		ko.applyBindings(new Viewmodel);
+	})
+
+	</script>
+</body>
+</html>
