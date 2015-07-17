@@ -2,6 +2,14 @@
 Knockout.js分页插件
 
 ## 示例(Example)
+html代码：
+```html
+<ul data-bind="foreach:list">
+	<li><span data-bind="text:id"></span>：<span data-bind="text:name"></span></li>
+</ul>
+<div data-bind="page:currentPage"></div>
+```
+js代码：
 ```js
 var data = [
 	{id:"1",name:"a"},
