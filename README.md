@@ -27,7 +27,7 @@ ko.applyBindings(new Viewmodel);
 ```
 
 ## 使用方法(Usage)
-- `ko.koPage.init(self, callback, config)`:
+- `ko.koPage.init(self, callback, config)`: 初始化分页方法，参数(Arguments)介绍如下
   * `self`: Viewmodel；
   * `callback`: 处理数据，传入的参数为当前的页码(`currentPage`)；
   * `config`: 自定义配置
@@ -39,7 +39,8 @@ ko.applyBindings(new Viewmodel);
     * `linksCount`: {`Number`} 显示的页面按钮数据，若值为偶数则会自动加1，默认值：5
     * `pagesize`: {`Number`} 每页显示的条数，默认值：10
     * `showLinks`: {`Boolen`} 是否显示页码按钮，默认值：true
-
+- `ko.koPage.count(total)`: `total`为Number类型，设置总条数的快捷方法，在Viewmodel中可以直接使用`this.countItems(total)`
+ 
 ## 依赖(Dependencies)
 - jQuery
 - Knockout
