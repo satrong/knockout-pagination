@@ -47,7 +47,12 @@ ko.applyBindings(new Viewmodel);
     * `linksCount`: {`Number`} 显示的页面按钮数据，若值为偶数则会自动加1，默认值：5
     * `pagesize`: {`Number`} 每页显示的条数，默认值：10
     * `showLinks`: {`Boolen`} 是否显示页码按钮，默认值：true
-- `ko.koPage.count(total)`: `total`为Number类型，设置总条数的快捷方法，在Viewmodel中可以直接使用`this.countItems(total)`
+- `ko.koPage.count(total)`: `total`为Number类型，设置总条数的快捷方法，在`callback`中用到，也可以直接使用`this.countItems(total)`
+- `page`: 自定义绑定方法，在视图中直接使用`data-bind="page:currentPage"`即可
+
+## 注意事项
+- 一个ViewModel中只能使用一个分页
+- 在一个页面中有多个分页（多个ViewModel）时不能使用`ko.koPage.count`方法，需要使用`this.countItems`替代
  
 ## 依赖(Dependencies)
 - jQuery
