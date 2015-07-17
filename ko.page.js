@@ -97,7 +97,6 @@ ko && ko.bindingHandlers && (function (ko, undefined) {
         });
         this.countItems = ko.observable();
         this.pagesize = ko.observable();
-        callback && callback.call(this, that.currentPage());
     }
 
     /// 外部接口：初始化
@@ -105,7 +104,9 @@ ko && ko.bindingHandlers && (function (ko, undefined) {
     /// @callback {Function}
     /// @options {Object}
     page.init = function (self, callback, options) {
-        page.__this = ko.utils.extend(self, new page(self, callback, options));
+        ko.utils.extend(self, new page(self, callback, options));
+		page.__this = self;
+        callback && callback.call(self, self.currentPage());
         return self;
     }
 
