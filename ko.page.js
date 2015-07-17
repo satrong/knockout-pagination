@@ -1,6 +1,7 @@
 ﻿/**
  *  Knockout.js 分页插件
- *
+ *  author: satrong (http://www.xiaoboy.com)
+ *  https://github.com/satrong/knockout-page
  */
 
 ko && ko.bindingHandlers && (function (ko, undefined) {
