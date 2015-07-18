@@ -2,6 +2,8 @@
  *  Knockout.js 分页插件
  *  author: satrong (http://www.xiaoboy.com)
  *  https://github.com/satrong/knockout-page
+ *	静态分页demo：http://www.xiaoboy.com/demos/knockout-page/static.html
+ *	Ajax分页demo：http://www.xiaoboy.com/demos/knockout-page/ajax.html
  */
 
 ko && ko.bindingHandlers && (function (ko, undefined) {
