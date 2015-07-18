@@ -57,3 +57,7 @@ ko.applyBindings(new Viewmodel);
 ## 依赖(Dependencies)
 - jQuery
 - Knockout
+
+## Demos
+- [静态分页demo](http://www.xiaoboy.com/demos/knockout-page/static.html)
+- [Ajax分页demo](http://www.xiaoboy.com/demos/knockout-page/ajax.html)
