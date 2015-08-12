@@ -25,7 +25,9 @@ ko && ko.bindingHandlers && (function (ko, undefined) {
             var current = viewModel.currentPage() - 0; // 当前页码
             var pagesize = config.pagesize; // 每页的条数
             var total = viewModel.countItems() - 0; // 总条数
+			if(total < 1) return;
             var maxPage = Math.ceil(total / pagesize); // 最大的页码
+			if(total < 2) return;
             var range = centerPosition(maxPage, current, config.linksCount);
             var div = document.createElement('div');
             div.setAttribute('class', config.className);
