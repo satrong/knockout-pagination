@@ -100,7 +100,7 @@ ko && ko.bindingHandlers && (function (ko, undefined) {
         this.currentPage.subscribe(function () {
             callback.call(that, that.currentPage());
         });
-        this.countItems = ko.observable();
+        this.countItems = ko.observable(0);
         this.pagesize = ko.observable();
     }
 
@@ -109,6 +109,14 @@ ko && ko.bindingHandlers && (function (ko, undefined) {
     /// @callback {Function}
     /// @options {Object}
     page.init = function (self, callback, options) {
+    	if (!(Object.prototype.toString.call(options) === "[object Object]" && options.pagesize)) {
+            if (/^\d+$/.test(options.pagesize)) {
+                throw "ko.koPage.init：pagesize参数必须为数字";
+            } else {
+                throw "ko.koPage.init：你还没有设置pagesize参数，";
+            }
+        }
+        options.pagesize = options.pagesize - 0;
         ko.utils.extend(self, new page(self, callback, options));
 		page.__this = self;
         callback && callback.call(self, self.currentPage());
