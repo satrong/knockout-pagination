@@ -45,7 +45,7 @@ ko.applyBindings(new Viewmodel);
     * `last`: {`String`} 默认值：末页
     * `className`: {`String`} 给分页添加的样式， 默认值：pagination
     * `linksCount`: {`Number`} 显示的页面按钮数据，若值为偶数则会自动加1，默认值：5
-    * `pagesize`: {`Number`} 每页显示的条数，默认值：10
+    * `pagesize`: {`Number`} 每页显示的条数，必须根据实际情况设定，必须手动设置
     * `showLinks`: {`Boolen`} 是否显示页码按钮，默认值：true
 - `ko.koPage.count(total)`: `total`为Number类型，设置总条数的快捷方法，在`callback`中用到，也可以直接使用`this.countItems(total)`
 - `page`: 自定义绑定方法，在视图中直接使用`data-bind="page:currentPage"`即可
