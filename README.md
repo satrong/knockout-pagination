@@ -55,7 +55,6 @@ ko.applyBindings(new Viewmodel);
 - 在一个页面中有多个分页（多个ViewModel）时不能使用`ko.koPage.count`方法，需要使用`this.countItems`替代
  
 ## 依赖(Dependencies)
-- jQuery
 - Knockout
 
 ## Demos
