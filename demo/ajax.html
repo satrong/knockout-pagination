@@ -1,0 +1,73 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Knockout-page Demo - 小虾虎鱼</title>
+	<script type="text/javascript" src="http://static.xiaoboy.com/lib/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="http://static.xiaoboy.com/lib/knockout-3.3.0.js"></script>
+	<script type="text/javascript" src="../ko.page.js"></script>
+	<style>
+		body{font-family:consolas;}
+		table{border-collapse:separate;border-spacing:1px;border-color:#f00;border-width:0;width:100%;background:#ccc;font-family:verdana,arial;font-size:10pt;line-height:100%;} 
+		th{background:#e6eeee;border:1px #fff solid;padding:5px;}
+		td{background:#fff;padding:5px;vertical-align:top;}
+		.page{font:13px/1.5 verdana,arial;height:22px;margin-top:20px;text-align:center;}
+		.page a,.page span{padding:0 8px;text-decoration:none;line-height:22px;height:22px;overflow:hidden;margin:0 1px;display:inline-block;}
+		.page a{color:#2084c6;background:#F0F3F9;border:1px #CCDDDD solid;}
+		.page a:hover{background:#666;color:#fff;border:1px #636363 solid;}
+		h1{text-align:center;}
+	</style>
+</head>
+<body>
+	<h1>Knockout-page Ajax分页demo</h1>
+	
+	<div>
+	<table border="0" cellpadding="0" cellspacing="1">
+	    <thead>
+			<tr>
+		        <th>标题</th>
+		        <th>日期</th>
+		    </tr>
+		</thead>
+		<tbody data-bind="foreach:list">
+			<tr>
+		        <td data-bind="text:title">标题</td>
+		        <td data-bind="text:date">日期</td>
+		    </tr>
+		</tbody>
+	</table>
+	</div>
+
+	<div data-bind="page:currentPage"></div>
+	
+	<div><a href="http://www.xiaoboy.com">返回首页</a></div>
+
+	<script type="text/javascript">
+
+	var Viewmodel = function(){
+		this.list = ko.observableArray();
+		ko.koPage.init(this,this.GetData,{
+			pagesize:5,
+			className:'page'
+		});
+	}
+
+	Viewmodel.prototype.GetData = function(pageindex){
+		var that =this;
+		$.ajax({
+			url:'./json/'+pageindex+'.json',
+			cache:false,
+			success:function(json){
+				ko.koPage.count(json.total);
+				that.list(json.data);
+			}
+		});		
+	}
+
+	$(function(){
+		ko.applyBindings(new Viewmodel);
+	})
+
+	</script>
+</body>
+</html>
