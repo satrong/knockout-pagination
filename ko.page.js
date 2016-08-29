@@ -107,11 +107,24 @@ ko && ko.bindingHandlers && (function (ko, undefined) {
 		var that = ko.utils.extend(this, self);
 		this.pageConfig = options;
 		this.currentPage = ko.observable(1);
-		this.currentPage.subscribe(function () {
-			callback.call(that, that.currentPage());
+		this.currentPage.subscribe(function (value) {
+			if(value > 0){
+				callback.call(that, that.currentPage());
+			}
 		});
 		this.countItems = ko.observable(0);
 		this.pagesize = ko.observable();
+
+		/**
+		 * 重置分页
+		 * @param {Number} pageindex 指定重置到哪页，默认为当前页，即this.currentPage
+		 */
+		this.pageReset = function(pageindex){
+			if(pageindex === undefined) pageindex = this.currentPage();
+			this.currentPage(0);
+			this.currentPage(pageindex);
+			return this;
+		}
 	}
 
 	/// 外部接口：初始化
@@ -140,7 +153,7 @@ ko && ko.bindingHandlers && (function (ko, undefined) {
 		return this.__this;
 	}
 
-	page.version = '1.1';
+	page.version = '1.2';
 
 	ko.koPage = page;
 })(ko);

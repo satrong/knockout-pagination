@@ -30,8 +30,12 @@ Viewmodel.prototype.GetData = function(pageindex){
 	ko.koPage.count(data.length);
 	this.list(data.slice((pageindex-1)*5,pageindex*5));
 }
+var vm = new Viewmodel;
+ko.applyBindings(vm);
 
-ko.applyBindings(new Viewmodel);
+/// 当新增数据时 重置分页
+data.unshift({id:"0",name:"new"});
+vm.pageReset();
 ```
 
 ## 使用方法(Usage)
@@ -49,6 +53,7 @@ ko.applyBindings(new Viewmodel);
     * `showLinks`: {`Boolen`} 是否显示页码按钮，默认值：true
 - `ko.koPage.count(total)`: `total`为Number类型，设置总条数的快捷方法，在`callback`中用到，也可以直接使用`this.countItems(total)`
 - `page`: 自定义绑定方法，在视图中直接使用`data-bind="page:currentPage"`即可
+- `this.pageReset(pageindex)`: {Number} 重置分页，默认值为`this.currentPage()`。当分页数据发生变化（新增或删除条数时）调用此方法可重置分页数据。
 
 ## 注意事项
 - 一个ViewModel中只能使用一个分页
