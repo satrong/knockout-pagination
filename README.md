@@ -1,6 +1,10 @@
 # knockout-page
 Knockout.js分页插件
 
+## 在线示例（Online demo）
+- http://satrong.github.io/knockout-pagination/demo/index.html
+- http://satrong.github.io/knockout-pagination/demo/ajax.html
+
 ## 示例(Example)
 html代码：
 ```html
